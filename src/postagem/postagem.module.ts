@@ -13,4 +13,4 @@ import { TemaModule } from "src/tema/tema.module";
     exports: [TypeOrmModule],
 })
 
-export class PostagemModule{ }
+export class PostagemModule{}

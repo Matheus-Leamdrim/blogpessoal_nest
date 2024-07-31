@@ -1,5 +1,6 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
+import { Usuario } from "src/auth/usuario/entities/usuario.entity";
 import { Tema } from "src/tema/entities/tema.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -25,5 +26,15 @@ export class Postagem{
         onDelete: "CASCADE"
     })
     tema:Tema
+
+    
+    @ManyToOne(() => Usuario, (usuario) => usuario.postagem, {
+        onDelete: "CASCADE"
+    })
+    
+    usuario: Usuario
 }
+
+    
+    
 
