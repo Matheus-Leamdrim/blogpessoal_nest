@@ -1,5 +1,5 @@
 import { Injectable } from "@nestjs/common";
-import * as bcrypt from "bcrypt";
+import * as bcrypt from "bcryptjs";
 
 @Injectable()
 export class Bcrypt{
@@ -9,6 +9,6 @@ export class Bcrypt{
     }
     
     async compararSenhas(senhaBanco:string, senhaDigitada : string) : Promise<boolean>{
-        return bcrypt.compareSync(senhaDigitada, senhaBanco);
+        return await bcrypt.compare(senhaDigitada, senhaBanco);
     }
 }

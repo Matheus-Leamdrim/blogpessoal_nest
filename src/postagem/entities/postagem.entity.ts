@@ -1,6 +1,6 @@
 import { Transform, TransformFnParams } from "class-transformer";
 import { IsNotEmpty } from "class-validator";
-import { Usuario } from "src/auth/usuario/entities/usuario.entity";
+import { Usuario } from "src/usuario/entities/usuario.entity";
 import { Tema } from "src/tema/entities/tema.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -15,6 +15,7 @@ export class Postagem{
     @Column({length: 100, nullable: false}) //definir o tamanho e não aceitar o valor
     titulo: string;
   
+    @Transform(({ value }: TransformFnParams) => value?.trim())
     @IsNotEmpty()
     @Column({length: 1000, nullable: false})
     texto: string;
@@ -25,14 +26,14 @@ export class Postagem{
     @ManyToOne(() => Tema,(Tema) =>Tema.postagem, {
         onDelete: "CASCADE"
     })
-    tema:Tema
+    tema:Tema;
 
     
     @ManyToOne(() => Usuario, (usuario) => usuario.postagem, {
         onDelete: "CASCADE"
     })
     
-    usuario: Usuario
+    usuario: Usuario;
 }
 
     

@@ -19,6 +19,7 @@ export class Usuario {
     @Column({length: 255, nullable: false })
     usuario: string
 
+    @Transform(({ value }: TransformFnParams) => value?.trim())
     @MinLength(8)
     @IsNotEmpty()
     @Column({length: 255, nullable: false }) 
